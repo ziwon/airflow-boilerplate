@@ -1,0 +1,15 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Custom
+.idea/**
+.git
+logs
+*.pid
+.envrc
+.python-version
+.python-virtualenv
+*.db
+*.dev
