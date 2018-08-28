@@ -41,7 +41,7 @@ $ ./bin/run scheduler
 ```
 
 ## Running
-Please wait patiently, due to it takes ages to build padas in alpine. (While your computer is building this image, you might be able to cook your Thanksgiving turkey, eat it and clean it up.) Or you can change it to the prebuilt image to get done in short.
+Please wait patiently, due to taking ages to build padas in alpine. (While your computer is building this image, you might be able to cook your Thanksgiving turkey, eat it and clean it up.) Or you can change it to the prebuilt image to get done in short.
 
 ```
 make build
