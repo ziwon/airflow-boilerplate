@@ -29,6 +29,10 @@ export AIRFLOW_NUM_OF_WORKERS=${AIRFLOW_NUM_OF_WORKERS:-2}
 export AIRFLOW_BROKER_URL=${AIRFLOW_BROKER_URL:-sqla+mysql://airflow:airflow@127.0.0.1:3306/airflow}
 export AIRFLOW_RESULT_BACKEND=${AIRFLOW_RESULT_BACKEND:-db+mysql://airflow:airflow@127.0.0.1:3306/airflow}
 
+export AIRFLOW_LOGGING_CONFIG_CLASS=${AIRFLOW_LOGGING_CONFIG_CLASS:-''}
+export AIRFLOW_REMOTE_LOGGING=${AIRFLOW_REMOTE_LOGGING:-False}
+export AIRFLOW_TASK_LOG_READER=${AIRFLOW_TASK_LOG_READER:-task}
+
 # default variables
 : "${HOST:=$AIRFLOW_WEB_HOST}"
 : "${PORT:=$AIRFLOW_WEB_PORT}"
@@ -67,7 +71,7 @@ case $1 in
     if [ "$AIRFLOW_EXECUTOR" = "LocalExecutor" ]; then
       # With the "Local" executor it should all run in one container.
       airflow scheduler &
-    fi 
+    fi
     exec airflow webserver
     ;;
   scheduler|worker)
