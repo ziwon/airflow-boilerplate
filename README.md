@@ -6,6 +6,16 @@
 
 Please install [direnv](https://direnv.net/), [pyenv](https://github.com/pyenv/pyenv), and [pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv) for the local development.
 
+### .direnvrc
+
+Please copy the `.direnvrc` file to your `$HOME` directory. It allows some bash functions declared in `.direnvrc` file to be available in `.envrc`.
+
+```
+cp .direnvrc $HOME
+```
+
+After having the installation the above packages, you can see the folllowing results:
+
 ```
 $ git clone git@github.com:ziwon/airflow-boilerplate.git
 $ cd airflow-boilerplate
