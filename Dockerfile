@@ -40,7 +40,14 @@ RUN set -ex \
 
 RUN apk add mariadb-client-libs bash
 
+ARG dag-path
+ARG log-path
+
 ENV ENV=local
+
+ENV AIRFLOW_HOME /app
+ENV AIRFLOW_DAG_PATH ${dag-path:-"${AIRFLOW_HOME}/dags"}
+ENV AIRFLOW_LOG_PATH ${log-path:-"${AIRFLOW_HOME}/logs"}
 ENV AIRFLOW_DATABASE_URL mysql://airflow:airflow@db/airflow
 ENV AIRFLOW_BROKER_URL redis://redis:6379/0
 ENV AIRFLOW_RESULT_BACKEND db+mysql://airflow:airflow@db/airflow
