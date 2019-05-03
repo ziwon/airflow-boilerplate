@@ -1,5 +1,6 @@
 from airflow import DAG, settings
-from airflow.models import State, DagRun
+from airflow.models import DagRun
+from airflow.utils.state import State
 from jinja2.exceptions import UndefinedError
 
 

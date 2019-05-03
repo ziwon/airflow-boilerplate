@@ -1,6 +1,4 @@
-# Warning: Takes ages to build pandas in alpine
-# Alternatives is to use pre-build image like (FROM amancevice/pandas:0.23.0-python3-alpine)
-FROM python:3.5-alpine3.7
+FROM python:3.7-alpine
 
 # Replace the apk repositories for a better performance
 RUN sed -i 's/http\:\/\/dl-cdn.alpinelinux.org/https\:\/\/alpine.global.ssl.fastly.net/g' /etc/apk/repositories
@@ -34,20 +32,18 @@ RUN set -ex \
         libxslt-dev \
         libffi-dev \
         linux-headers \
-    && ln -s /usr/include/locale.h /usr/include/xlocale.h \
     && pip3 install --default-timeout 300 -r requirements.txt \
     && apk del .build-deps
 
-RUN apk add mariadb-client-libs bash
+RUN apk add mariadb-dev bash
 
-ARG dag-path
-ARG log-path
+ARG AIRFLOW_HOME=/app
+ARG dag-path="$AIRFLOW_HOME/dags"
+ARG log-path="$AIRFLOW_HOME/logs"
 
 ENV ENV=local
-
-ENV AIRFLOW_HOME /app
-ENV AIRFLOW_DAG_PATH ${dag-path:-"${AIRFLOW_HOME}/dags"}
-ENV AIRFLOW_LOG_PATH ${log-path:-"${AIRFLOW_HOME}/logs"}
+ENV AIRFLOW_DAG_PATH $dag-path
+ENV AIRFLOW_LOG_PATH $log-path
 ENV AIRFLOW_DATABASE_URL mysql://airflow:airflow@db/airflow
 ENV AIRFLOW_BROKER_URL redis://redis:6379/0
 ENV AIRFLOW_RESULT_BACKEND db+mysql://airflow:airflow@db/airflow

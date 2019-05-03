@@ -1,2 +1,2 @@
--e git+git://github.com/apache/incubator-airflow.git@v1-10-stable#egg=apache-airflow[celery,mysql,redis,async,password,crypto,s3,slack]
+-e git+git://github.com/apache/incubator-airflow.git@v1-10-stable#egg=apache-airflow[celery,mysql,redis,async,password,crypto,s3,slack,kubernetes]
 mysql-connector-python
